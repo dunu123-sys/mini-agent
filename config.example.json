@@ -1,0 +1,79 @@
+{
+  "agent": {
+    "script": "mini-agent.py",
+    "server": "http://127.0.0.1:8099/v1",
+    "model": "qwen35-4b",
+    "ctx_size": 32768,
+    "max_steps": 12,
+    "max_tokens": 6144,
+    "temperature": 0.3,
+    "overhead_tokens": 900,
+    "retry_cut_tool_call": true
+  },
+  "tools": {
+    "max_result_chars": 5000,
+    "bash_tail_ratio": 0.7,
+    "step_cap_multiplier": 3,
+    "read": {
+      "line_numbers": true,
+      "max_lines": 400,
+      "outline_over_lines": 200,
+      "head_lines": 120,
+      "tail_lines": 60,
+      "outline_max_items": 80
+    },
+    "grep": {
+      "max_matches": 40,
+      "context": 2,
+      "max_line_chars": 200,
+      "skip_dirs": [
+        ".git",
+        "node_modules",
+        "__pycache__",
+        ".venv",
+        "venv",
+        "dist",
+        "build",
+        ".next"
+      ],
+      "max_file_bytes": 2000000
+    },
+    "bash": {
+      "timeout_s": 180,
+      "shell": "",
+      "kill_tree": true,
+      "idle_s": 15
+    },
+    "cache": {
+      "reads": true
+    }
+  },
+  "compaction": {
+    "auto": true,
+    "trigger_pct": 0.85,
+    "keep_last_messages": 6,
+    "keep_last_tokens": 2000,
+    "trim_tool_results_first": true,
+    "trim_tool_result_chars": 1200,
+    "digest_chars": 12000,
+    "summary_max_tokens": 900
+  },
+  "prompt": {
+    "system_file": "prompts/system.md",
+    "inject_memory": false,
+    "memory_file": "memories/MEMORY.md",
+    "user_file": "memories/USER.md",
+    "memory_max_chars": 4000,
+    "memory_budget": 2200,
+    "user_budget": 1375,
+    "backup_on_save": true
+  },
+  "ui": {
+    "port": 8790,
+    "sessions_dir": "state/sessions",
+    "title": "MINI AGENT",
+    "poll_ms": 3000,
+    "auto_scroll_px": 90
+  },
+  "_readme": "Single source of truth for mini-agent v2. Edit here or in the Configuration tab. Copy to config.json and edit; every path is relative to this folder or MINI_AGENT_ROOT."
+}

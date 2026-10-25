@@ -1,0 +1,10 @@
+config.json
+state/
+sessions/
+memories/
+models/
+logs/
+*.log
+__pycache__/
+*.pyc
+.env
